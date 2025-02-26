@@ -1,26 +1,68 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+// src/extension.ts
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+let lastFileHashes: { [key: string]: string } = {};
+
 export function activate(context: vscode.ExtensionContext) {
+  const gitExtension = vscode.extensions.getExtension('vscode.git')?.exports;
+  if (!gitExtension) {
+    vscode.window.showErrorMessage('Git extension not found.');
+    return;
+  }
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "gittriggered" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('gittriggered.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from GitTriggered!');
-	});
-
-	context.subscriptions.push(disposable);
+  const gitAPI = gitExtension.getAPI(1);
+  gitAPI.repositories.forEach((repo: any) => {
+    repo.state.onDidChange(() => checkFilesChange(repo));
+  });
 }
 
-// This method is called when your extension is deactivated
+function checkFilesChange(repo: any) {
+  const config = vscode.workspace.getConfiguration('fileChangeNotifier');
+  const packagesToNotify = config.get<{ file: string; command: string }[]>(
+    'packagesToNotify',
+    []
+  );
+
+  packagesToNotify.forEach((entry) => {
+    const filePath = path.join(repo.rootUri.fsPath, entry.file);
+
+    if (!fs.existsSync(filePath)) {
+      return;
+    }
+
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const currentHash = hashString(fileContent);
+
+    if (
+      lastFileHashes[entry.file] &&
+      lastFileHashes[entry.file] !== currentHash
+    ) {
+      vscode.window
+        .showInformationMessage(
+          `${entry.file} has changed. Run the associated command?`,
+          'Yes',
+          'No'
+        )
+        .then((selection) => {
+          if (selection === 'Yes') {
+            runCommand(entry.command, repo.rootUri.fsPath);
+          }
+        });
+    }
+    lastFileHashes[entry.file] = currentHash;
+  });
+}
+
+function hashString(content: string): string {
+  return require('crypto').createHash('sha256').update(content).digest('hex');
+}
+
+function runCommand(command: string, workspacePath: string) {
+  const terminal = vscode.window.createTerminal('File Change Notifier');
+  terminal.sendText(`cd ${workspacePath} && ${command}`);
+  terminal.show();
+}
+
 export function deactivate() {}
