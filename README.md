@@ -1,78 +1,59 @@
-# Git Triggered
+# TriggerMate - Automates tasks based on file updates
 
-Git Triggered is a Visual Studio Code extension that monitors specified files in your Git repositories for changes. When a change is detected, it prompts you to run an associated command.
+TriggerMate is a VSCode extension that watches for file changes and automatically executes predefined commands. This helps streamline workflows by ensuring necessary scripts run whenever critical files are updated.
 
-## Features
+## 🚀 Features
 
-- Monitors specified files for changes in Git repositories.
-- Prompts the user to run a command when a change is detected.
-- Configurable through VS Code settings.
+- Monitor specific files for changes.
+- Execute custom commands automatically.
+- Seamlessly integrates into any VSCode workspace.
 
-## Installation
+## 📦 Installation
 
-1. Clone the repository:
+1. Open VSCode.
+2. Go to the Extensions Marketplace.
+3. Search for **TriggerMate**.
+4. Click **Install**.
 
-   ```sh
-   git clone https://github.com/yourusername/gittriggered.git
-   ```
+## 🔧 Configuration
 
-2. Open the cloned repository in Visual Studio Code.
-
-3. Install the dependencies:
-
-   ```sh
-   npm install
-   ```
-
-4. Press `F5` to start debugging the extension.
-
-## Configuration
-
-You can configure the extension through the VS Code settings. Add the following configuration to your `settings.json`:
-
-<<<json
-"gitTriggered.packagesToNotify": [
-{
-"file": "path/to/file",
-"command": "your-command"
-}
-]
-
-> > >
-
-- `file`: The relative path to the file you want to monitor.
-- `command`: The command to run when the file changes.
-
-## Usage
-
-1. Open a Git repository in Visual Studio Code.
-2. Make sure the Git extension is enabled.
-3. Configure the files and commands you want to monitor in your `settings.json`.
-4. When a monitored file changes, you will be prompted to run the associated command.
-
-## Example
-
-Here is an example configuration:
+Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Define the files to watch and the commands to execute:
 
 ```json
-"gitTriggered.packagesToNotify": [
-  {
-    "file": "src/index.js",
-    "command": "npm run build"
-  },
-  {
-    "file": "README.md",
-    "command": "echo 'README changed'"
-  }
-]
+{
+  "gitTriggered.packagesToNotify": [
+    {
+      "file": "package.json",
+      "command": "npm ci"
+    },
+    {
+      "file": "poetry.lock",
+      "command": "poetry install"
+    }
+  ]
+}
 ```
 
-In this example, when `src/index.js` changes, the `npm run build` command will be run. When `README.md` changes, the `echo 'README changed'` command will be run.
+## 🎯 Example Use Cases
 
-## Contributing
+- Run `npm ci` when `package.json` changes.
+- Automatically install dependencies when `poetry.lock` updates.
+- Trigger custom scripts based on file modifications.
 
-Contributions are welcome! Please open an issue or submit a pull request.
+## 🛠️ How It Works
 
-## License
+1. The extension detects changes in the specified files.
+2. A notification prompts you to execute the associated command.
+3. On confirmation, the command runs in a new terminal instance.
 
-This project is licensed under the MIT License.
+## 💡 Contributing
+
+Want to improve TriggerMate? Feel free to open an issue or submit a pull request!
+
+## 📜 License
+
+MIT License. Free to use and modify.
+
+---
+
+TriggerMate – Your automation companion in VSCode! 🚀

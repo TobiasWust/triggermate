@@ -1,7 +1,8 @@
 {
   "name": "gittriggered",
-  "displayName": "GitTriggered",
-  "description": "Runs commands when Git changes.",
+  "displayName": "TriggerMate",
+  "description": "Automates tasks based on file updates.",
+  "publisher": "tobiaswust",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.97.0"
@@ -9,13 +10,15 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Git Triggered",
+      "title": "TriggerMate",
       "properties": {
-        "gitTriggered.packagesToNotify": {
+        "triggerMate.packagesToNotify": {
           "type": "array",
           "description": "List of files to watch and commands to run when they change.",
           "items": {
