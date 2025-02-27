@@ -1,71 +1,78 @@
-# gittriggered README
+# Git Triggered
 
-This is the README for your extension "gittriggered". After writing up a brief description, we recommend including the following sections.
+Git Triggered is a Visual Studio Code extension that monitors specified files in your Git repositories for changes. When a change is detected, it prompts you to run an associated command.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Monitors specified files for changes in Git repositories.
+- Prompts the user to run a command when a change is detected.
+- Configurable through VS Code settings.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Clone the repository:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+   ```sh
+   git clone https://github.com/yourusername/gittriggered.git
+   ```
 
-## Requirements
+2. Open the cloned repository in Visual Studio Code.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+3. Install the dependencies:
 
-## Extension Settings
+   ```sh
+   npm install
+   ```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+4. Press `F5` to start debugging the extension.
 
-For example:
+## Configuration
 
-This extension contributes the following settings:
+You can configure the extension through the VS Code settings. Add the following configuration to your `settings.json`:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+<<<json
+"gitTriggered.packagesToNotify": [
+{
+"file": "path/to/file",
+"command": "your-command"
+}
+]
 
-## Known Issues
+> > >
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- `file`: The relative path to the file you want to monitor.
+- `command`: The command to run when the file changes.
 
-## Release Notes
+## Usage
 
-Users appreciate release notes as you update your extension.
+1. Open a Git repository in Visual Studio Code.
+2. Make sure the Git extension is enabled.
+3. Configure the files and commands you want to monitor in your `settings.json`.
+4. When a monitored file changes, you will be prompted to run the associated command.
 
-### 1.0.0
+## Example
 
-Initial release of ...
+Here is an example configuration:
 
-### 1.0.1
+```json
+"gitTriggered.packagesToNotify": [
+  {
+    "file": "src/index.js",
+    "command": "npm run build"
+  },
+  {
+    "file": "README.md",
+    "command": "echo 'README changed'"
+  }
+]
+```
 
-Fixed issue #.
+In this example, when `src/index.js` changes, the `npm run build` command will be run. When `README.md` changes, the `echo 'README changed'` command will be run.
 
-### 1.1.0
+## Contributing
 
-Added features X, Y, and Z.
+Contributions are welcome! Please open an issue or submit a pull request.
 
----
+## License
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This project is licensed under the MIT License.

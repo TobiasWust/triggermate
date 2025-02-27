@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function checkFilesChange(repo: any) {
-  const config = vscode.workspace.getConfiguration('fileChangeNotifier');
+  const config = vscode.workspace.getConfiguration('gitTriggered');
   const packagesToNotify = config.get<{ file: string; command: string }[]>(
     'packagesToNotify',
     []
@@ -41,7 +41,7 @@ function checkFilesChange(repo: any) {
     ) {
       vscode.window
         .showInformationMessage(
-          `${entry.file} has changed. Run the associated command?`,
+          `${entry.file} has changed. Run the <${entry.command}>?`,
           'Yes',
           'No'
         )
