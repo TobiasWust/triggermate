@@ -18,7 +18,7 @@
     "configuration": {
       "title": "TriggerMate",
       "properties": {
-        "triggerMate.packagesToNotify": {
+        "triggerMate.fileTriggers": {
           "type": "array",
           "description": "List of files to watch and commands to run when they change.",
           "items": {
@@ -39,6 +39,11 @@
       }
     }
   },
+  "galleryBanner": {
+    "color": "#1E1E1E",
+    "theme": "dark",
+    "logo": "images/logo.png"
+  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -46,6 +51,10 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tobiaswust/triggermate"
   },
   "devDependencies": {
     "@types/vscode": "^1.97.0",

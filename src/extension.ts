@@ -18,20 +18,20 @@ export function activate(context: vscode.ExtensionContext) {
     watchers = [];
 
     const config = vscode.workspace.getConfiguration('triggerMate');
-    const packagesToNotify = config.get<{ file: string; command: string }[]>(
-      'packagesToNotify',
+    const fileTriggers = config.get<{ file: string; command: string }[]>(
+      'fileTriggers',
       []
     );
 
-    if (!Array.isArray(packagesToNotify)) {
-      outputChannel.appendLine('Invalid configuration for packagesToNotify.');
+    if (!Array.isArray(fileTriggers)) {
+      outputChannel.appendLine('Invalid configuration for fileTriggers.');
       return;
     }
 
-    packagesToNotify.forEach((entry) => {
+    fileTriggers.forEach((entry) => {
       if (!entry.file || !entry.command) {
         outputChannel.appendLine(
-          'Invalid entry in packagesToNotify configuration.'
+          'Invalid entry in fileTriggers configuration.'
         );
         return;
       }
@@ -62,7 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
   // Update watchers when configuration changes
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration('triggerMate.packagesToNotify')) {
+      if (e.affectsConfiguration('triggerMate.fileTriggers')) {
         updateWatchers();
       }
     })

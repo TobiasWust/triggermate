@@ -21,7 +21,7 @@ Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Defi
 
 ```json
 {
-  "gitTriggered.packagesToNotify": [
+  "triggerMate.packagesToNotify": [
     {
       "file": "package.json",
       "command": "npm ci"
