@@ -4,7 +4,7 @@
   "description": "Automates tasks based on file updates.",
   "icon": "logo.png",
   "publisher": "tobiaswust",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.97.0"
   },
