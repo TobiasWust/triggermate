@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
@@ -38,13 +37,6 @@ export function activate(context: vscode.ExtensionContext) {
 
       const filePath = path.join(workspacePath, entry.file);
 
-      if (!fs.existsSync(filePath)) {
-        outputChannel.appendLine(
-          `File ${filePath} does not exist. Skipping...`
-        );
-        return;
-      }
-
       const watcher = vscode.workspace.createFileSystemWatcher(filePath);
       watcher.onDidChange(() => handleFileChange(entry));
       watcher.onDidCreate(() => handleFileChange(entry));
@@ -71,23 +63,34 @@ export function activate(context: vscode.ExtensionContext) {
   outputChannel.appendLine('TriggerMate extension activated.');
 }
 
-function handleFileChange(entry: { file: string; command: string }) {
+function handleFileChange(entry: {
+  file: string;
+  command: string;
+  autoExecute?: boolean;
+}) {
   if (!workspacePath) {
     outputChannel.appendLine('No workspace path available.');
     return;
   }
 
-  vscode.window
-    .showInformationMessage(
-      `${entry.file} has changed. Run \`${entry.command}\`?`,
-      'Yes',
-      'No'
-    )
-    .then((selection) => {
-      if (selection === 'Yes') {
-        runCommand(entry.command, workspacePath);
-      }
-    });
+  if (entry.autoExecute) {
+    vscode.window.showInformationMessage(
+      `${entry.file} has changed. Running \`${entry.command}\`.`
+    );
+    runCommand(entry.command, workspacePath);
+  } else {
+    vscode.window
+      .showInformationMessage(
+        `${entry.file} has changed. Run \`${entry.command}\`?`,
+        'Yes',
+        'No'
+      )
+      .then((selection) => {
+        if (selection === 'Yes') {
+          runCommand(entry.command, workspacePath);
+        }
+      });
+  }
 }
 
 function runCommand(command: string, workspacePath: string) {

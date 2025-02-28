@@ -43,6 +43,11 @@
               "command": {
                 "type": "string",
                 "description": "The command to run when the file changes."
+              },
+              "autoExecute": {
+                "type": "boolean",
+                "description": "Automatically execute the command without asking for confirmation.",
+                "default": false
               }
             }
           },

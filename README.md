@@ -4,7 +4,7 @@ TriggerMate is a VSCode extension that watches for file changes and automaticall
 
 ## 🚀 Features
 
-- Monitor specific files for changes.
+- Monitor files for changes.
 - Execute custom commands automatically.
 - Seamlessly integrates into any VSCode workspace.
 
@@ -22,6 +22,15 @@ Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Defi
     {
       "file": "pyproject.toml",
       "command": "poetry install"
+    },
+    {
+      "file": "backend/requirements.txt",
+      "command": "pip install -r backend/requirements.txt",
+      "autoExecute": true
+    },
+    {
+      "file": "src/**/*.js",
+      "command": "npm run lint"
     }
   ]
 }
