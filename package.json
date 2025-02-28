@@ -2,11 +2,23 @@
   "name": "triggermate",
   "displayName": "TriggerMate",
   "description": "Automates tasks based on file updates.",
+  "icon": "logo.png",
   "publisher": "tobiaswust",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.97.0"
   },
+  "keywords": [
+    "trigger",
+    "automation",
+    "tasks"
+  ],
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "pricing": "Free",
+  "license": "MIT",
   "categories": [
     "Other"
   ],
@@ -39,11 +51,6 @@
       }
     }
   },
-  "galleryBanner": {
-    "color": "#1E1E1E",
-    "theme": "dark",
-    "logo": "images/logo.png"
-  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -56,6 +63,10 @@
     "type": "git",
     "url": "https://github.com/tobiaswust/triggermate"
   },
+  "bugs": {
+    "url": "https://github.com/tobiaswust/triggermate/issues"
+  },
+  "homepage": "https://wust.dev",
   "devDependencies": {
     "@types/vscode": "^1.97.0",
     "@types/mocha": "^10.0.10",
