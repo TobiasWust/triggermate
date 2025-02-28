@@ -8,13 +8,6 @@ TriggerMate is a VSCode extension that watches for file changes and automaticall
 - Execute custom commands automatically.
 - Seamlessly integrates into any VSCode workspace.
 
-## 📦 Installation
-
-1. Open VSCode.
-2. Go to the Extensions Marketplace.
-3. Search for **TriggerMate**.
-4. Click **Install**.
-
 ## 🔧 Configuration
 
 Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Define the files to watch and the commands to execute:
@@ -23,11 +16,11 @@ Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Defi
 {
   "triggerMate.fileTriggers": [
     {
-      "file": "package.json",
-      "command": "npm ci"
+      "file": "frontend/package.json",
+      "command": "cd frontend && npm ci"
     },
     {
-      "file": "poetry.lock",
+      "file": "pyproject.toml",
       "command": "poetry install"
     }
   ]
@@ -37,7 +30,7 @@ Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Defi
 ## 🎯 Example Use Cases
 
 - Run `npm ci` when `package.json` changes.
-- Automatically install dependencies when `poetry.lock` updates.
+- Automatically install dependencies when `pyproject.toml` updates.
 - Trigger custom scripts based on file modifications.
 
 ## 🛠️ How It Works
@@ -57,3 +50,5 @@ MIT License. Free to use and modify.
 ---
 
 TriggerMate – Your automation companion in VSCode! 🚀
+
+Made with ❤️ by [Wust](https://wust.dev)
