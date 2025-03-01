@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     fileTriggers.forEach((entry) => {
-      if (!entry.file || !entry.command) {
+      if (!entry.file) {
         outputChannel.appendLine(
           'Invalid entry in fileTriggers configuration.'
         );
@@ -65,11 +65,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 function handleFileChange(entry: {
   file: string;
-  command: string;
+  command?: string;
   autoExecute?: boolean;
 }) {
   if (!workspacePath) {
     outputChannel.appendLine('No workspace path available.');
+    return;
+  }
+
+  if (!entry.command) {
+    vscode.window.showInformationMessage(`${entry.file} has changed.`);
     return;
   }
 
@@ -87,6 +92,12 @@ function handleFileChange(entry: {
       )
       .then((selection) => {
         if (selection === 'Yes') {
+          if (!entry.command) {
+            vscode.window.showErrorMessage(
+              'No command specified for this file trigger.'
+            );
+            return;
+          }
           runCommand(entry.command, workspacePath);
         }
       });

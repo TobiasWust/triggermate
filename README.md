@@ -31,6 +31,9 @@ Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Defi
     {
       "file": "src/**/*.js",
       "command": "npm run lint"
+    },
+    {
+      "file": "docs/**/*.md"
     }
   ]
 }

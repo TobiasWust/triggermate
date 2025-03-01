@@ -42,7 +42,8 @@
               },
               "command": {
                 "type": "string",
-                "description": "The command to run when the file changes."
+                "description": "The command to run when the file changes.",
+                "minLength": 0
               },
               "autoExecute": {
                 "type": "boolean",
