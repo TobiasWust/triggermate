@@ -7,6 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.3.2]
 
 - Mention glob pattern matching in README.
+- More keywords.
 
 ## [0.3.1]
 
