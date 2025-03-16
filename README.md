@@ -10,9 +10,11 @@ TriggerMate is a VSCode extension that watches for file changes and automaticall
 
 ## 🎯 Use Cases
 
-- Run `npm ci` when `package.json` changes.
-- Automatically install dependencies when `pyproject.toml` updates.
-- Trigger custom scripts based on file modifications.
+- Automatically run build scripts when source files change.
+- Trigger deployment processes when configuration files are updated.
+- Execute tests when test files are modified.
+- Run linting or formatting commands when code files are saved.
+- Perform database migrations when migration files are added or changed.
 
 ## ⚙️ Configuration Options
 
@@ -24,7 +26,7 @@ Defines the list of files to watch and commands to run.
 
 #### Properties:
 
-- **`file`** _(string, required)_ – The path to the file relative to the workspace.
+- **`file`** _(string, required)_ – The path to the file relative to the workspace. Supports glob patterns.
 - **`command`** _(string, optional)_ – The command to execute when the file changes.
 - **`autoExecute`** _(boolean, optional, default: false)_ – If `true`, the command runs automatically without prompting the user.
 
@@ -76,6 +78,21 @@ Defines the list of files to watch and commands to run.
 📌 _Runs `poetry install` automatically when `pyproject.toml` changes._
 
 ![Auto Demo](images/auto.gif)
+
+4️⃣ **Glob Pattern Matching**
+
+```json
+{
+  "triggerMate.fileTriggers": [
+    {
+      "file": "**/migrations/*.py",
+      "command": "poetry run python manage.py migrate"
+    }
+  ]
+}
+```
+
+📌 _Runs `poetry run python manage.py migrate` when any Python file in the `migrations` directory changes._
 
 ## 🛠️ How It Works
 
