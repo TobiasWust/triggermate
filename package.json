@@ -1,7 +1,7 @@
 {
   "name": "triggermate",
   "displayName": "TriggerMate",
-  "description": "Automates tasks based on file updates.",
+  "description": "TriggerMate automates tasks when files change. Never miss dependency updates or manual steps again!",
   "icon": "images/logo.png",
   "publisher": "tobiaswust",
   "version": "0.3.1",
@@ -9,9 +9,11 @@
     "vscode": "^1.97.0"
   },
   "keywords": [
-    "trigger",
     "automation",
-    "tasks"
+    "file watcher",
+    "command execution",
+    "task runner",
+    "dependency management"
   ],
   "galleryBanner": {
     "color": "#007ACC",
@@ -20,7 +22,9 @@
   "pricing": "Free",
   "license": "MIT",
   "categories": [
-    "Other"
+    "Other",
+    "Linters",
+    "Testing"
   ],
   "activationEvents": [
     "onStartupFinished"
