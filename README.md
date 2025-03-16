@@ -8,42 +8,74 @@ TriggerMate is a VSCode extension that watches for file changes and automaticall
 - Execute custom commands automatically.
 - Seamlessly integrates into any VSCode workspace.
 
-## 🔧 Configuration
+## 🎯 Use Cases
 
-Configure TriggerMate in your workspace settings (`.vscode/settings.json`). Define the files to watch and the commands to execute:
+- Run `npm ci` when `package.json` changes.
+- Automatically install dependencies when `pyproject.toml` updates.
+- Trigger custom scripts based on file modifications.
+
+## ⚙️ Configuration Options
+
+TriggerMate provides flexible configuration options to control its behavior. Below are the supported properties:
+
+### `triggerMate.fileTriggers`
+
+Defines the list of files to watch and commands to run.
+
+#### Properties:
+
+- **`file`** _(string, required)_ – The path to the file relative to the workspace.
+- **`command`** _(string, optional)_ – The command to execute when the file changes.
+- **`autoExecute`** _(boolean, optional, default: false)_ – If `true`, the command runs automatically without prompting the user.
+
+#### Examples:
+
+1️⃣ **Basic File Notification (No Command Execution)**
+
+```json
+{
+  "triggerMate.fileTriggers": [{ "file": "README.md" }]
+}
+```
+
+📌 _Triggers a notification when `README.md` changes._
+
+![Notification Demo](images/notification.gif)
+
+2️⃣ **Prompted Command Execution**
 
 ```json
 {
   "triggerMate.fileTriggers": [
     {
-      "file": "frontend/package.json",
-      "command": "cd frontend && npm ci"
-    },
-    {
-      "file": "pyproject.toml",
-      "command": "poetry install"
-    },
-    {
-      "file": "backend/requirements.txt",
-      "command": "pip install -r backend/requirements.txt",
-      "autoExecute": true
-    },
-    {
-      "file": "src/**/*.js",
-      "command": "npm run lint"
-    },
-    {
-      "file": "docs/**/*.md"
+      "file": "package.json",
+      "command": "npm install"
     }
   ]
 }
 ```
 
-## 🎯 Example Use Cases
+📌 _Notifies the user and asks if they want to run `npm install` when `package.json` updates._
 
-- Run `npm ci` when `package.json` changes.
-- Automatically install dependencies when `pyproject.toml` updates.
-- Trigger custom scripts based on file modifications.
+![Prompt Demo](images/prompt.gif)
+
+3️⃣ **Automatic Command Execution**
+
+```json
+{
+  "triggerMate.fileTriggers": [
+    {
+      "file": "pyproject.toml",
+      "command": "poetry install",
+      "autoExecute": true
+    }
+  ]
+}
+```
+
+📌 _Runs `poetry install` automatically when `pyproject.toml` changes._
+
+![Auto Demo](images/auto.gif)
 
 ## 🛠️ How It Works
 

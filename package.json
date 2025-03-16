@@ -2,7 +2,7 @@
   "name": "triggermate",
   "displayName": "TriggerMate",
   "description": "Automates tasks based on file updates.",
-  "icon": "logo.png",
+  "icon": "images/logo.png",
   "publisher": "tobiaswust",
   "version": "0.3.0",
   "engines": {
