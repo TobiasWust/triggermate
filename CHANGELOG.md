@@ -4,6 +4,29 @@ All notable changes to the "TriggerMate" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.3.3]
+
+- Add more typescript type details.
+- Add ability to configure tasks.
+- Update configuration fo tasks
+```
+{
+  // configure events to monitor for
+  ignoreCreateEvents?: boolean,
+  ignoreChangeEvents?: boolean,
+  ignoreDeleteEvents?: boolean,
+
+  // configure task or terminal (default)
+  commandType?: "task" | "terminal",
+
+  // number of milliseconds to wait before executing another task
+  commandDebounce?: number,
+
+  // use glob pattern to configure multiple file types
+  file: "**/*.{c,cpp,h}"
+}
+```
+
 ## [0.3.2]
 
 - Mention glob pattern matching in README.
