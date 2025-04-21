@@ -4,7 +4,7 @@
   "description": "TriggerMate automates tasks when files change. Never miss dependency updates or manual steps again!",
   "icon": "images/logo.png",
   "publisher": "tobiaswust",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "engines": {
     "vscode": "^1.97.0"
   },
