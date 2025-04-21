@@ -1,29 +1,23 @@
 # Change Log
 
-All notable changes to the "TriggerMate" extension will be documented in this file.
+## [0.4.0]
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- **Task Support**: Added the ability to execute VSCode tasks as part of file triggers.
+- **Event Filtering**: Introduced options to ignore specific file events (`create`, `change`, `delete`) for more granular control.
+- **Enhanced Output**: Improved the output channel with detailed information about active watchers and triggered events.
+- **Debounce Feature**: Added support for debouncing commands to prevent rapid consecutive executions.
 
-## [0.3.3]
+### Example Configuration:
 
-- Add more typescript type details.
-- Add ability to configure tasks.
-- Update configuration fo tasks
-```
+```json
 {
-  // configure events to monitor for
-  ignoreCreateEvents?: boolean,
-  ignoreChangeEvents?: boolean,
-  ignoreDeleteEvents?: boolean,
+  "commandType": "task", // Execute as a VSCode task (default: "terminal")
 
-  // configure task or terminal (default)
-  commandType?: "task" | "terminal",
+  "ignoreCreateEvents": true, // Ignore file creation events
+  "ignoreChangeEvents": false, // Monitor file changes
+  "ignoreDeleteEvents": true, // Ignore file deletions
 
-  // number of milliseconds to wait before executing another task
-  commandDebounce?: number,
-
-  // use glob pattern to configure multiple file types
-  file: "**/*.{c,cpp,h}"
+  "commandDebounce": 500 // Wait 500ms before executing the next command
 }
 ```
 
